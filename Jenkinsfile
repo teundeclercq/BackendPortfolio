@@ -6,11 +6,16 @@ pipeline {
    }
    stages {
      stage('Initialize') {
-           git credentialsId: '0b90389f-5ed6-4f37-8478-83a4d155e14a', url: 'https://github.com/teundeclercq/BackendPortfolio.git'
+        steps {
+            git credentialsId: '0b90389f-5ed6-4f37-8478-83a4d155e14a', url: 'https://github.com/teundeclercq/BackendPortfolio.git'
+        }
      }
      stage('Compile-Package') {
-           // Get maven home path
-           sh "${mvnHome}/bin/mvn package"
+        steps {
+            // Get maven home path
+            sh "${mvnHome}/bin/mvn package"
+        }
+
      }
    }
 
