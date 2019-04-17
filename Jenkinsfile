@@ -12,8 +12,4 @@ pipeline {
       }
     }
   }
-  environment {
-    maven = 'Maven 3.3.9'
-    jdk = 'jdk11'
-  }
 }
