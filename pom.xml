@@ -67,6 +67,8 @@
 				<version>2.2</version>
 				<configuration>
 					<server>TomcatServer</server>
+					<username>admin</username>
+					<password>i+jwNGgm9[sWF=K.{Ft*:EwG=I*sUvJv</password>
 					<url>https://tomcat.teun-school.nl/manager/text</url>
 					<path>/BackendPortfolio</path>
 				</configuration>
