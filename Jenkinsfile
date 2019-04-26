@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Sonarqube') {
         steps {
-            sh 'sonar-scanner -D sonar.login=eaf66e3e1e8f30a8ebecd2376df679464d91dccb'
+            sh 'mvn clean install sonar:sonar JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java"'
         }
     }
     stage('Deployment') {
