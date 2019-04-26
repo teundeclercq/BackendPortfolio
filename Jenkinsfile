@@ -1,10 +1,18 @@
 pipeline {
   agent any
   stages {
-    stage('Sonarqubescanner') {
-       steps {
-            mvn sonar:sonar -Dsonar.host.url=https://sonarqube.teun-school.nl -Dsonar.login=005e7fab1a20bcea8b24c26c76c8358df702b0bd
-       }
+    stage('Sonarqube') {
+        environment {
+            scannerHome = tool 'SonarQubeScanner'
+        }
+        steps {
+            withSonarQubeEnv('sonarqube') {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+            timeout(time: 10, unit: 'MINUTES') {
+                waitForQualityGate abortPipeline: true
+            }
+        }
     }
     stage('Deployment') {
       steps {
@@ -15,6 +23,5 @@ pipeline {
   tools {
     maven 'Maven 3.3.9'
     jdk 'jdk11'
-    
   }
 }
