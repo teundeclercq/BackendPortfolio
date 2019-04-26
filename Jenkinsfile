@@ -3,9 +3,7 @@ pipeline {
   stages {
     stage('Sonarqubescanner') {
        steps {
-            mvn sonar:sonar
-           -Dsonar.host.url=https://sonarqube.teun-school.nl
-           -Dsonar.login=005e7fab1a20bcea8b24c26c76c8358df702b0bd
+            mvn sonar:sonar -Dsonar.host.url=https://sonarqube.teun-school.nl -Dsonar.login=005e7fab1a20bcea8b24c26c76c8358df702b0bd
        }
     }
     stage('Deployment') {
