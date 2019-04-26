@@ -2,16 +2,8 @@ pipeline {
   agent any
   stages {
     stage('Sonarqube') {
-        environment {
-            scannerHome = tool 'SonarQubeScanner'
-        }
         steps {
-            withSonarQubeEnv('sonarqube') {
-                sh "${scannerHome}/bin/sonar-scanner"
-            }
-            timeout(time: 10, unit: 'MINUTES') {
-                waitForQualityGate abortPipeline: true
-            }
+            sh 'sonar-scanner -D sonar.login=eaf66e3e1e8f30a8ebecd2376df679464d91dccb'
         }
     }
     stage('Deployment') {
