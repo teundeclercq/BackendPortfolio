@@ -2,14 +2,15 @@ pipeline {
   agent any
   stages {
       stage('SonarQube analysis') {
-            tools {
-              sonarQube 'SonarQube Scanner 3.2'
-            }
-            steps {
-              withSonarQubeEnv('SonarQube Scanner') {
-                sh 'sonar-scanner'
-              }
-            }
+         steps {
+                    script {
+                      // requires SonarQube Scanner 2.8+
+                      scannerHome = tool 'SonarQube Scanner 2.8'
+                    }
+                    withSonarQubeEnv('SonarQube Scanner') {
+                      sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                  }
       }
       stage('Deployment') {
         steps {
