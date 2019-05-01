@@ -5,10 +5,11 @@ pipeline {
 
                  steps {
                   script {
-                            scannerHome = tool 'SonarQubeScanner'
+                     scannerHome = tool 'SonarQubeScanner'
                    }
                     withSonarQubeEnv('SonarQubeServer') {
-                      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar '
+                      sh 'pwd'
+                      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
                     }
                   }
       }
