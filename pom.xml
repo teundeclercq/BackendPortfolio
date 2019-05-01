@@ -8,11 +8,11 @@
 		<version>2.1.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>nl.teundeclercq</groupId>
-	<artifactId>portofolio</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>portofolio</name>
+		<groupId>nl.teundeclercq</groupId>
+		<artifactId>portofolio</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<packaging>war</packaging>
+		<name>portofolio</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -53,12 +53,6 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.codehaus.mojo</groupId>
-			<artifactId>sonar-maven-plugin</artifactId>
-			<version>3.4.0.905</version>
-			<type>pom</type>
-		</dependency>
 	</dependencies>
 
 	<build>
@@ -77,19 +71,6 @@
 					<password>i+jwNGgm9[sWF=K.{Ft*:EwG=I*sUvJv</password>
 					<url>https://tomcat.teun-school.nl/manager/text</url>
 					<path>/BackendPortfolio</path>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.sonarsource.scanner.maven</groupId>
-				<artifactId>sonar-maven-plugin</artifactId>
-				<version>3.6.0.1398</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
