@@ -3,15 +3,13 @@ pipeline {
   stages {
       stage('SonarQube analysis') {
          steps {
-                    script {
-                      // requires SonarQube Scanner 2.8+
-                      scannerHome = tool 'SonarQubeScanner'
-                      echo "${scannerHome}"
-                    }
-                    withSonarQubeEnv('SonarQube Scanner') {
-                      sh "${scannerHome}/bin/sonar-scanner"
-                    }
-                  }
+             script {
+                scannerHome = tool 'SonarQubeScanner'
+             }
+             withSonarQubeEnv('SonarQube Scanner') {
+                sh "mvn clean package sonar:sonar"
+             }
+         }
       }
       stage('Deployment') {
         steps {
