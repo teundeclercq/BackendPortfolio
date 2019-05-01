@@ -6,7 +6,9 @@ pipeline {
   }
   stages {
       stage('Compile Package') {
-        sh '${maven}/bin/mvn package'
+        steps {
+          sh '${maven}/bin/mvn package'
+        }
       }
       stage('SonarQube analysis') {
         steps {
