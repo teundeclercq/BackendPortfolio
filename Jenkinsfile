@@ -9,7 +9,7 @@ pipeline {
                    }
                     withSonarQubeEnv('SonarQubeServer') {
                       sh 'pwd'
-                      sh 'sonar:sonar'
+                      sh 'mvn clean package sonar:sonar'
                       // sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.1492:sonar -X'
                     }
                   }
