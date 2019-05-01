@@ -1,25 +1,24 @@
 pipeline {
   agent any
+  tools {
+    maven 'Maven 3.3.9'
+    jdk 'jdk11'
+  }
   stages {
+      stage('Compile Package') {
+        sh '${maven}/bin/mvn package'
+      }
       stage('SonarQube analysis') {
-
-                 steps {
-                  script {
-                     scannerHome = tool 'SonarQubeScanner'
-                   }
-                    withSonarQubeEnv('SonarQubeServer') {
-                      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar -X'
-                    }
-                  }
+        steps {
+          withSonarQubeEnv('sonar-6') {
+            sh '${maven}/bin/mvn sonar:sonar'
+          }
+        }
       }
       stage('Deployment') {
         steps {
             sh 'mvn tomcat7:deploy -e'
         }
       }
-  }
-  tools {
-    maven 'Maven 3.3.9'
-    jdk 'jdk11'
   }
 }
