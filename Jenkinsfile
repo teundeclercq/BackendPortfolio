@@ -2,10 +2,14 @@ pipeline {
   agent any
   stages {
       stage('SonarQube analysis') {
-        withSonarQubeEnv('sonarQube') {
-          // requires SonarQube Scanner for Maven 3.2+
-          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
-        }
+            tools {
+              sonarQube 'SonarQube Scanner 3.2'
+            }
+            steps {
+              withSonarQubeEnv('SonarQube Scanner') {
+                sh 'sonar-scanner'
+              }
+            }
       }
       stage('Deployment') {
         steps {
@@ -16,6 +20,5 @@ pipeline {
   tools {
     maven 'Maven 3.3.9'
     jdk 'jdk11'
-    sonarQube 'SonarQubeScanner'
   }
 }
