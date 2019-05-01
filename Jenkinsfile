@@ -7,14 +7,13 @@ pipeline {
   stages {
       stage('Compile Package') {
         steps {
-          echo '${maven}'
-          sh '${maven}/bin/mvn package'
+          sh 'mvn package'
         }
       }
       stage('SonarQube analysis') {
         steps {
           withSonarQubeEnv('sonar-6') {
-            sh '${maven}/bin/mvn sonar:sonar'
+            sh 'mvn sonar:sonar'
           }
         }
       }
