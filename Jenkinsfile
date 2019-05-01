@@ -7,7 +7,9 @@ pipeline {
                 scannerHome = tool 'SonarQubeScanner'
              }
              withSonarQubeEnv('SonarQube Scanner') {
-                sh "mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar"
+                sh "mvn sonar:sonar \
+                      -Dsonar.host.url=https://sonarqube.teun-school.nl \
+                      -Dsonar.login=12af8009851a6984c1e69ef2212068c1361761f5"
              }
          }
       }
