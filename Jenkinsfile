@@ -1,11 +1,12 @@
 pipeline {
   agent any
   stages {
-    stage('Sonarqube') {
-        steps {
-            sh 'mvn clean install sonar:sonar JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java"'
+    stage('SonarQube analysis') {
+        withSonarQubeEnv('My SonarQube Server') {
+          // requires SonarQube Scanner for Maven 3.2+
+          sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
         }
-    }
+      }
     stage('Deployment') {
       steps {
         sh 'mvn tomcat7:deploy -e'
