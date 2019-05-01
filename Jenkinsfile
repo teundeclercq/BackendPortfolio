@@ -2,11 +2,8 @@ pipeline {
   agent any
   stages {
       stage('SonarQube analysis') {
-               tools {
-                 sonarQube 'SonarQubeScanner'
-               }
                steps {
-                 withSonarQubeEnv('SonarQube Scanner') {
+                 withSonarQubeEnv('SonarQubeScanner') {
                    sh 'mvn sonar:sonar'
                }
           }
@@ -18,6 +15,7 @@ pipeline {
       }
   }
   tools {
+    sonarQube 'SonarQubeScanner'
     maven 'Maven 3.3.9'
     jdk 'jdk11'
   }
