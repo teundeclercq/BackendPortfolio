@@ -2,14 +2,14 @@ pipeline {
   agent any
   stages {
       stage('SonarQube analysis') {
-         steps {
-             script {
-                scannerHome = tool 'SonarQubeScanner'
-             }
-             withSonarQubeEnv('SonarQube Scanner') {
-                sh "mvn sonar:sonar"
-             }
-         }
+               tools {
+                 sonarQube 'SonarQubeScanner'
+               }
+               steps {
+                 withSonarQubeEnv('SonarQube Scanner') {
+                   sh 'mvn sonar:sonar'
+               }
+          }
       }
       stage('Deployment') {
         steps {
