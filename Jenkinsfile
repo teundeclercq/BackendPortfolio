@@ -7,6 +7,7 @@ pipeline {
   stages {
       stage('Compile Package') {
         steps {
+          echo '${maven}'
           sh '${maven}/bin/mvn package'
         }
       }
