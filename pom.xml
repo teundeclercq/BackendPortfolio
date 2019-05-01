@@ -79,24 +79,11 @@
 					<path>/BackendPortfolio</path>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.6.0.1398</version>
+			</plugin>
 		</plugins>
 	</build>
-	<profiles>
-		<profile>
-			<id>sonar</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<!-- Optional URL to server. Default value is http://localhost:9000 -->
-				<sonar.host.url> https://sonarqube.teun-school.nl/ </sonar.host.url>
-				<!--Uncomment below few lines if you are using external databases(Oracle/DB2/Mysql) -->
-				<!--  <sonar.jdbc.url>your database url</sonar.jdbc.url>
-               <sonar.jdbc.driver>your DB driver</sonar.jdbc.driver>
-               <sonar.jdbc.username>DB username</sonar.jdbc.username>
-               <sonar.jdbc.password>DB password</sonar.jdbc.password>        -->
-
-			</properties>
-		</profile>
-	</profiles>
 </project>

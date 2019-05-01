@@ -8,7 +8,7 @@ pipeline {
                      scannerHome = tool 'SonarQubeScanner'
                    }
                     withSonarQubeEnv('SonarQubeServer') {
-                      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.1492:sonar -X'
+                      sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.6.0.1398:sonar -X'
                     }
                   }
       }
