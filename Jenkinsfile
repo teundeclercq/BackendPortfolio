@@ -5,6 +5,11 @@ pipeline {
     jdk 'jdk11'
   }
   stages {
+      stage('Compile') {
+        steps {
+          sh 'mvn clean install package'
+        }
+      }
       stage('SonarQube analysis') {
         steps {
           withSonarQubeEnv('sonar-6') {
