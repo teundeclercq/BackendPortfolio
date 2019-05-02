@@ -13,7 +13,7 @@ pipeline {
       stage('SonarQube analysis') {
         steps {
 
-            sh 'mvn sonar:sonar'
+            sh 'mvn sonar:sonar -Dsonar.login=57914a907d8d32a2954f765b15a9d279e4215355'
 
         }
       }
