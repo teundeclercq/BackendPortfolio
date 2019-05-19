@@ -14,25 +14,25 @@ import java.util.List;
 public class PortfolioController {
     @Autowired
     private PortfolioService portfolioService;
-    @GetMapping("/All/{id}")
-    public List<Portfolio> getAllPortfoliosById(@PathVariable String userId) throws SQLException {
+    @GetMapping("/AllByUID/{userId}")
+    public List<Portfolio> getPortfoliosById(@PathVariable String userId) throws SQLException {
         return portfolioService.getPortfoliosById(userId);
     }
-    @GetMapping("/Get/{id}")
-    public Portfolio getPortfolio(@PathVariable long userId) throws SQLException {
-        return portfolioService.getPortfolioById(userId);
+    @GetMapping("/Get/{PortfolioId}")
+    public Portfolio getPortfolio(@PathVariable long PortfolioId) throws SQLException {
+        return portfolioService.getPortfolioById(PortfolioId);
     }
-    @PostMapping("/Add/{id}")
-    public void addPortfolio(@PathVariable String userId, @RequestBody Portfolio portfolio) throws SQLException {
+    @PostMapping("/AddByUID/{userId}")
+    public void addPortfolioById(@PathVariable String userId, @RequestBody Portfolio portfolio) throws SQLException {
         try {
             portfolioService.addPortfolio(portfolio, userId);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    @RequestMapping("/Portfolio/Delete/{id}")
-    public void deletePortfolio(@PathVariable long id) throws SQLException {
-        portfolioService.deletePortfolio(id);
+    @PostMapping("/DeleteByUID/{userId}")
+    public void deletePortfolioById(@PathVariable String userId, @RequestBody long portfolioId) throws SQLException {
+        portfolioService.deletePortfolio(userId, portfolioId);
     }
     @PostMapping("/Portfolio/Update")
     public void updatePortfolio(@RequestBody Portfolio portfolio) throws SQLException {

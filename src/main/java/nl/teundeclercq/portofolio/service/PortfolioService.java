@@ -30,5 +30,5 @@ public class PortfolioService {
     }
     public Portfolio getPortfolioById(Long id) {return portfolioRepository.findById(id).orElse(null);}
     public void updatePortfolio(Portfolio portfolio) { portfolioRepository.save(portfolio);}
-    public void deletePortfolio(Long id) { portfolioRepository.deleteById(id);}
+    public void deletePortfolio(String userId ,Long id) { portfolioRepository.deleteById(id);}
 }
