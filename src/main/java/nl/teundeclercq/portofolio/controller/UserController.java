@@ -13,10 +13,11 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/User")
+@CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;
-
+    
     @PostMapping("/AddUser/")
     public Map<String, String> addUser(@RequestBody String userId) throws SQLException {
         HashMap<String, String> map = new HashMap<>();

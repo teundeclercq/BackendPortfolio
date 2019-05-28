@@ -13,4 +13,5 @@ public class UserService {
     public User createUser(String userId) {
         return userRepository.save(new User(userId));
     }
+    public User findUser(String userId) { return userRepository.findById(userId).orElse(null);}
 }

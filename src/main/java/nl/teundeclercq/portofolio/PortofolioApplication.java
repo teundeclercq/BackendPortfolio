@@ -2,12 +2,12 @@ package nl.teundeclercq.portofolio;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class PortofolioApplication {
+public class PortofolioApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PortofolioApplication.class, args);
 	}
-
 }

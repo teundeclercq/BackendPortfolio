@@ -1,15 +1,18 @@
 package nl.teundeclercq.portofolio.model;
-
-import lombok.*;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "portfolio")
-@Setter
-@Getter
 @ToString
-public class Portfolio {
+@Getter
+@Setter
+public class Portfolio implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "portfolio_id")
@@ -20,13 +23,30 @@ public class Portfolio {
     private String subtitle;
     @Column(name = "description")
     private String description;
+    @Lob
+    @Column(name = "portfolio_image", length = 10000000)
+    private String portfolioImage;
+    @JsonIgnore
+    @OneToMany(mappedBy = "portfolio")
+    private Set<Document> documents;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
 
     public Portfolio() {
     }
 
-    public Portfolio(String title, String subtitle, String description) {
-        this.title = title;
-        this.subtitle = subtitle;
-        this.description = description;
-    }
+//    public Portfolio(String title, String subtitle, String description) {
+//        this.title = title;
+//        this.subtitle = subtitle;
+//        this.description = description;
+//    }
+//
+//    public Portfolio(String title, String subtitle, String description, User user) {
+//        this.title = title;
+//        this.subtitle = subtitle;
+//        this.description = description;
+//        this.user = user;
+//    }
 }

@@ -14,21 +14,23 @@ public class PortfolioService {
     private PortfolioRepository portfolioRepository;
 
     public List<Portfolio> getPortfoliosById(String userId) {
-        List<Portfolio> portfolios = new ArrayList<>();
-        portfolioRepository.findPortfoliosById(userId).forEach(portfolios :: add);
-        return portfolios;
+//        List<Portfolio> portfolios = new ArrayList<>();
+        return portfolioRepository.findByUserId(userId);
+
     }
 
     public List<Portfolio> getAllPortfolios() {
         List<Portfolio> portfolios = new ArrayList<>();
-        portfolioRepository.findAll().forEach(portfolios :: add);
+        portfolioRepository.findAll().forEach(portfolios::add);
         return portfolios;
     }
 
-    public void addPortfolio(Portfolio portfolio, String userId) {
+    public void addPortfolio(Portfolio portfolio) {
         portfolioRepository.save(portfolio);
     }
-    public Portfolio getPortfolioById(Long id) {return portfolioRepository.findById(id).orElse(null);}
+    public Portfolio getPortfolioById(int id) {return portfolioRepository.findById(id).orElse(null);}
     public void updatePortfolio(Portfolio portfolio) { portfolioRepository.save(portfolio);}
-    public void deletePortfolio(String userId ,Long id) { portfolioRepository.deleteById(id);}
+    public void deletePortfolio(int portfolioID) {
+        portfolioRepository.deleteById(portfolioID);
+    }
 }
