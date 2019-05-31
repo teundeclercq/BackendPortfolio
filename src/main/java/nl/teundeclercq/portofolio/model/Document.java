@@ -1,8 +1,10 @@
 package nl.teundeclercq.portofolio.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "document")
@@ -21,5 +23,8 @@ public class Document {
     @ManyToOne
     @JoinColumn(name = "portfolio_id", nullable = false)
     private Portfolio portfolio;
+    @JsonIgnore
+    @ManyToMany(mappedBy = "documents")
+    private Set<Admin> admins;
     public Document() { }
 }

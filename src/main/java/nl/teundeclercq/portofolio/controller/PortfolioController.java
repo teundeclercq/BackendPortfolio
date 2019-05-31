@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.sound.sampled.Port;
 import java.awt.*;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -22,12 +23,14 @@ public class PortfolioController {
     private PortfolioService portfolioService;
     @Autowired
     private UserService userService;
-
+    @GetMapping("/All")
+    public List<Portfolio> getAllPortfolios() {
+        return portfolioService.getAllPortfolios();
+    }
     @GetMapping("/AllByUID/{userId}")
     public List<Portfolio> getPortfoliosById(@PathVariable String userId) throws SQLException {
         return portfolioService.getPortfoliosById(userId);
     }
-
     @GetMapping("/Get/{PortfolioId}")
     public Portfolio getPortfolio(@PathVariable int PortfolioId) throws SQLException {
         return portfolioService.getPortfolioById(PortfolioId);

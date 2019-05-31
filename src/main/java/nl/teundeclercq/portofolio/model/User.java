@@ -3,6 +3,7 @@ package nl.teundeclercq.portofolio.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
+import java.lang.reflect.Type;
 import java.util.Set;
 
 @Entity
@@ -14,14 +15,24 @@ public class User {
     @Id
     @Column(name = "user_id")
     private String id;
-
+    @Column(name = "username")
+    private String username;
+    @Column(name = "email")
+    private String email;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
     public User(String id) {
         this.id = id;
     }
     @JsonIgnore
     @OneToMany(mappedBy = "user")
     private Set<Portfolio> portfolios;
+    @ManyToMany(mappedBy = "users")
+    private Set<Admin> admins;
+    public User() { }
 
-    public User() {
+    public Role getRole() {
+        return role;
     }
 }
