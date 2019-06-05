@@ -80,6 +80,7 @@
 				<version>2.2</version>
 				<configuration>
 					<server>TomcatServer</server>
+					<update>true</update>
 					<username>admin</username>
 					<password>i+jwNGgm9[sWF=K.{Ft*:EwG=I*sUvJv</password>
 					<url>https://tomcat.teun-school.nl/manager/text</url>
