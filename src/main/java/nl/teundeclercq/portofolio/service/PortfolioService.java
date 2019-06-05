@@ -13,10 +13,11 @@ public class PortfolioService {
     @Autowired
     private PortfolioRepository portfolioRepository;
 
+    public PortfolioService(PortfolioRepository repo) {
+        portfolioRepository = repo;
+    }
     public List<Portfolio> getPortfoliosById(String userId) {
-//        List<Portfolio> portfolios = new ArrayList<>();
         return portfolioRepository.findByUserId(userId);
-
     }
 
     public List<Portfolio> getAllPortfolios() {

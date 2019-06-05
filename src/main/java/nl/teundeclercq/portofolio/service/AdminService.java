@@ -12,7 +12,9 @@ import java.util.List;
 public class AdminService {
     @Autowired
     private AdminRepository adminRepository;
-
+    public AdminService(AdminRepository repo) {
+        adminRepository = repo;
+    }
     public Admin addUserToAdmin(String userid) {
         return this.adminRepository.save(new Admin(userid));
     }

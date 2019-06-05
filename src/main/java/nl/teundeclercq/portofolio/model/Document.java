@@ -21,10 +21,17 @@ public class Document {
     @Column(name = "data", length = 10000000)
     private String data;
     @ManyToOne
-    @JoinColumn(name = "portfolio_id", nullable = false)
+    @JoinColumn(name = "portfolio_id")
     private Portfolio portfolio;
     @JsonIgnore
     @ManyToMany(mappedBy = "documents")
     private Set<Admin> admins;
     public Document() { }
+
+    public Document(String name, String data, Portfolio portfolio, Set<Admin> admins) {
+        this.name = name;
+        this.data = data;
+        this.portfolio = portfolio;
+        this.admins = admins;
+    }
 }

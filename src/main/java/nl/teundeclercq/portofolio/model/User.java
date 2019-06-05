@@ -10,7 +10,6 @@ import java.util.Set;
 @Table(name = "user")
 @Getter
 @Setter
-@ToString
 public class User {
     @Id
     @Column(name = "user_id")
@@ -32,7 +31,24 @@ public class User {
     private Set<Admin> admins;
     public User() { }
 
-    public Role getRole() {
-        return role;
+    public User(String id, String username, String email, Role role, Set<Portfolio> portfolios, Set<Admin> admins) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.role = role;
+        this.portfolios = portfolios;
+        this.admins = admins;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", role=" + role +
+                ", portfolios=" + portfolios +
+                ", admins=" + admins +
+                '}';
     }
 }

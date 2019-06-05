@@ -30,14 +30,22 @@ public class Portfolio implements Serializable {
     @OneToMany(mappedBy = "portfolio")
     private Set<Document> documents;
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
 
     public Portfolio() {
     }
 
-//    public Portfolio(String title, String subtitle, String description) {
+    public Portfolio(String title, String subtitle, String description, String portfolioImage, Set<Document> documents, User user) {
+        this.title = title;
+        this.subtitle = subtitle;
+        this.description = description;
+        this.portfolioImage = portfolioImage;
+        this.documents = documents;
+        this.user = user;
+    }
+    //    public Portfolio(String title, String subtitle, String description) {
 //        this.title = title;
 //        this.subtitle = subtitle;
 //        this.description = description;

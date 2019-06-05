@@ -2,6 +2,8 @@ package nl.teundeclercq.portofolio.controller;
 
 import nl.teundeclercq.portofolio.model.Document;
 import nl.teundeclercq.portofolio.model.User;
+import nl.teundeclercq.portofolio.repository.DocumentRepository;
+import nl.teundeclercq.portofolio.repository.UserRepository;
 import nl.teundeclercq.portofolio.service.DocumentService;
 import nl.teundeclercq.portofolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +16,15 @@ import java.util.Map;
 @RequestMapping("/Document")
 @CrossOrigin
 public class DocumentController {
+
     @Autowired
     private DocumentService documentService;
     private UserService userService;
+
+    public DocumentController(DocumentService documentService) {
+        this.documentService = documentService;
+    }
+
     @GetMapping("/All/{id}")
     public List<Document> getAllDocuments(@PathVariable String id) {
         User user = this.userService.findUser(id);

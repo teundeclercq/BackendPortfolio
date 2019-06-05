@@ -13,6 +13,9 @@ public class DocumentService {
     @Autowired
     private DocumentRepository documentRepository;
 
+    public DocumentService(DocumentRepository repo) {
+        documentRepository = repo;
+    }
 
     public List<Document> getAllDocuments() {
         List<Document> documents = new ArrayList<>();

@@ -7,5 +7,4 @@ import java.util.List;
 @Repository
 public interface PortfolioRepository extends CrudRepository<Portfolio, Integer> {
     List<Portfolio> findByUserId (String userID);
-
 }
