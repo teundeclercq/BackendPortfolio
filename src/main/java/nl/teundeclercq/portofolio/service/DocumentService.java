@@ -32,5 +32,9 @@ public class DocumentService {
         this.documentRepository.deleteById(id);
     }
     public void updateDocument(Document document) { this.documentRepository.save(document); }
+    public boolean findDocument(int id) {
+        return this.documentRepository.findById(id).isPresent();
+    }
+
 
 }

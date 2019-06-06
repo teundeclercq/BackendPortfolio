@@ -17,7 +17,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/Portfolio")
-@CrossOrigin
+@CrossOrigin(origins = "https://portfolios4.teun-school.nl", maxAge = 3600)
 public class PortfolioController {
     @Autowired
     private PortfolioService portfolioService;
@@ -41,7 +41,6 @@ public class PortfolioController {
         System.out.println("portfolio: " + portfolio);
         try {
             portfolioService.addPortfolio(portfolio);
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -51,8 +50,12 @@ public class PortfolioController {
     public Map<String, String> deletePortfolioById(@PathVariable int portfolioID) throws SQLException {
         HashMap<String, String> map = new HashMap<>();
         try {
-            portfolioService.deletePortfolio(portfolioID);
-            map.put("Status", "Ok");
+            if(portfolioService.portfolioExists(portfolioID)){
+                portfolioService.deletePortfolio(portfolioID);
+                map.put("Status", "Ok");
+            } else {
+                map.put("Status", "Could not delete portfolio");
+            }
             return map;
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +68,9 @@ public class PortfolioController {
     @PostMapping("/Portfolio/Update")
     public void updatePortfolio(@RequestBody Portfolio portfolio) throws SQLException {
         try {
-            portfolioService.updatePortfolio(portfolio);
+            if (portfolioService.portfolioExists(portfolio.getId())) {
+                portfolioService.updatePortfolio(portfolio);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

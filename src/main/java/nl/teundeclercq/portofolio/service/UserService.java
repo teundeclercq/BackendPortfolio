@@ -35,4 +35,7 @@ public class UserService {
         return userRepository.save(user); }
     public void deleteUser(String userId) { userRepository.deleteById(userId);}
     public User findUser(String userId) { return userRepository.findById(userId).orElse(null);}
+    public boolean userExists (String userId) {
+        return userRepository.findById(userId).isPresent();
+    }
 }

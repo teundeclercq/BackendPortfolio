@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/User")
-@CrossOrigin
+@CrossOrigin(origins = "https://portfolios4.teun-school.nl")
 public class UserController {
     @Autowired
     private UserService userService;
@@ -46,7 +46,7 @@ public class UserController {
     public Map<String, String> deleteUser(@PathVariable String userId) {
         HashMap<String, String> map = new HashMap<>();
         try{
-            if(userService.findUser(userId) != null){
+            if(userService.userExists(userId)){
                 this.userService.deleteUser(userId);
                 FirebaseAuth.getInstance().deleteUser(userId);
                 System.out.println("Succesfully deleted the user: " + userId);
@@ -71,7 +71,10 @@ public class UserController {
     }
     @PutMapping("/Update")
     public User UpdateUser(@RequestBody User user) {
-        return userService.updateUser(user);
+        if(userService.userExists(user.getId())) {
+            return userService.updateUser(user);
+        } else {
+            return null;
+        }
     }
-
 }
