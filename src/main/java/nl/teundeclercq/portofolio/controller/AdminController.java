@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/Admin")
-@CrossOrigin
+@CrossOrigin(origins = "https://portfolios4.teun-school.nl", maxAge = 3600)
 public class AdminController {
     @Autowired
     private AdminService adminService;

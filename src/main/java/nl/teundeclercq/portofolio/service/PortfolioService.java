@@ -34,4 +34,5 @@ public class PortfolioService {
     public void deletePortfolio(int portfolioID) {
         portfolioRepository.deleteById(portfolioID);
     }
+    public boolean portfolioExists(int portfolioId) { return portfolioRepository.findById(portfolioId).isPresent();}
 }

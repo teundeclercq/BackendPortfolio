@@ -14,7 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/Document")
-@CrossOrigin
+@CrossOrigin(origins = "https://portfolios4.teun-school.nl", maxAge = 3600)
 public class DocumentController {
 
     @Autowired
@@ -36,7 +36,12 @@ public class DocumentController {
     }
     @GetMapping("/ByPortfolio/{id}")
     public List<Document> getDocumentsByPortfolioId(@PathVariable int id) {
-        return this.documentService.getDocumentsByPortfolioId(id);
+        List<Document> documents = this.documentService.getDocumentsByPortfolioId(id);
+        if(!documents.isEmpty()) {
+            return documents;
+        } else {
+            return null;
+        }
     }
 
     @PostMapping("/Add")
@@ -51,8 +56,12 @@ public class DocumentController {
     public Map<String, String> deleteDocument(@PathVariable int id) {
         HashMap<String, String> map = new HashMap<>();
         try {
-            this.documentService.deleteDocument(id);
-            map.put("Status", "Ok");
+            if(this.documentService.findDocument(id)) {
+                this.documentService.deleteDocument(id);
+                map.put("Status", "Ok");
+            } else {
+                map.put("Status", "Can't find document");
+            }
             return map;
         } catch(Exception e) {
             e.printStackTrace();
@@ -62,6 +71,12 @@ public class DocumentController {
     }
     @PostMapping("/Update")
     public void updateDocument(@RequestBody Document document) {
-        this.documentService.updateDocument(document);
+        try {
+            if (this.documentService.findDocument(document.getId())) {
+                this.documentService.updateDocument(document);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
