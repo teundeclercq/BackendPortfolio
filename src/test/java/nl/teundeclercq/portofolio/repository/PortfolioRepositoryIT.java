@@ -47,7 +47,7 @@ public class PortfolioRepositoryIT {
         MockitoAnnotations.initMocks(this);
         portfolios = new HashSet<>();
         portfolioList = new ArrayList<>();
-        user = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.user, portfolios, null);
+        user = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.USER, portfolios, null);
         portfolio = new Portfolio("teun", "test", "test", "test", null, user);
         portfolios.add(portfolio);
         portfolioList.add(portfolio);

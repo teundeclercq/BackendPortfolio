@@ -54,7 +54,7 @@ public class UserTest {
 
     @Test
     public void getRole() {
-        Role role = Role.user;
+        Role role = Role.USER;
         user.setRole(role);
         assertEquals(role, user.getRole());
     }
@@ -76,7 +76,7 @@ public class UserTest {
         String username = "teundeclercq";
         String email = "teundeclercq@gmail.com";
         String id = "UI12";
-        Role role = Role.user;
+        Role role = Role.USER;
         HashSet portfolios = new HashSet();
         portfolios.add(new Portfolio());
         HashSet admins = new HashSet();
@@ -88,7 +88,7 @@ public class UserTest {
         user.setRole(role);
         user.setPortfolios(portfolios);
         user.setAdmins(admins);
-        String toString = "user{" +
+        String toString = "USER{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +

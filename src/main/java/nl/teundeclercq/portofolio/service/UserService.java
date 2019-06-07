@@ -28,7 +28,7 @@ public class UserService {
     }
     public List<User> findAllAdmins() {
         List<User> users = new ArrayList<>();
-        userRepository.findUsersByRole(Role.admin).forEach(users::add);
+        userRepository.findUsersByRole(Role.ADMIN).forEach(users::add);
         return users;
     }
     public User updateUser(User user) {

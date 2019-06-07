@@ -53,8 +53,8 @@ public class DocumentControllerTest {
 //        document1.setName("teundoc1.docx");
 //        documentSet.add(document);
 //        documentSet.add(document1);
-//        user = new user();
-//        user.setId("1");
+//        USER = new USER();
+//        USER.setId("1");
 //        mockMvc = MockMvcBuilders
 //                .standaloneSetup(documentController)
 //                .build();
@@ -62,7 +62,7 @@ public class DocumentControllerTest {
 
     @Test
     public void getAllDocuments() throws Exception {
-//        when(userService.findUser("1")).thenReturn(user);
+//        when(userService.findUser("1")).thenReturn(USER);
 //        when(documentService.getAllDocuments()).thenReturn(documentSet);
 //
 //        mockMvc.perform(get("/All/{id}","id"))

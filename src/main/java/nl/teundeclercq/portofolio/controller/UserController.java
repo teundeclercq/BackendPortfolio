@@ -57,10 +57,10 @@ public class UserController {
             if(userService.userExists(userId)){
                 this.userService.deleteUser(userId);
                 FirebaseAuth.getInstance().deleteUser(userId);
-                logger.log(Level.INFO,"Succesfully deleted the user: " , userId);
+                logger.log(Level.INFO,"Succesfully deleted the USER: " + userId);
                 map.put(status, "Ok");
             } else {
-                map.put(status, "user not deleted");
+                map.put(status, "USER not deleted");
             }
             return map;
         } catch (Exception e) {
@@ -71,7 +71,7 @@ public class UserController {
     }
     @GetMapping("/All/{userId}")
     public List<User> getAllUsers(@PathVariable String userId) {
-        if(this.userService.findUser(userId).getRole() == Role.admin) {
+        if(this.userService.findUser(userId).getRole() == Role.ADMIN) {
             return this.userService.findAllUsers();
         } else {
             return emptyUsers;

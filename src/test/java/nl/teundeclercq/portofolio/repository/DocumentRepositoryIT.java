@@ -45,7 +45,7 @@ public class DocumentRepositoryIT {
         MockitoAnnotations.initMocks(this);
         HashSet<Portfolio> portfolios = new HashSet<>();
         HashSet<Document> documents = new HashSet<>();
-        user = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.user, portfolios, null);
+        user = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.USER, portfolios, null);
         portfolio = new Portfolio("teun", "test", "test", "test", documents, user);
         document = new Document("documentnaam", "documentdata", portfolio, null);
         portfolios.add(portfolio);
