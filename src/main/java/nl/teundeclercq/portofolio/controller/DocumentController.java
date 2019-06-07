@@ -1,6 +1,7 @@
 package nl.teundeclercq.portofolio.controller;
 
 import nl.teundeclercq.portofolio.model.Document;
+import nl.teundeclercq.portofolio.model.DocumentToDo;
 import nl.teundeclercq.portofolio.model.User;
 import nl.teundeclercq.portofolio.repository.DocumentRepository;
 import nl.teundeclercq.portofolio.repository.UserRepository;
@@ -11,11 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/Document")
 @CrossOrigin(origins = "https://portfolios4.teun-school.nl", maxAge = 3600)
 public class DocumentController {
+    private static final Logger LOGGER = Logger.getLogger( DocumentController.class.getName() );
 
     @Autowired
     private DocumentService documentService;
@@ -45,11 +49,16 @@ public class DocumentController {
     }
 
     @PostMapping("/Add")
-    public void addDocument(@RequestBody Document document) {
+    public void addDocument(@RequestBody DocumentToDo documentToDo) {
         try {
+            Document document = new Document();
+            document.setName(documentToDo.getName());
+            document.setData(documentToDo.getData());
+            document.setPortfolio(documentToDo.getPortfolio());
+            document.setAdmins(documentToDo.getAdmins());
             documentService.addDocument(document);
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.INFO, "Exception", e);
         }
     }
     @DeleteMapping("/Delete/{id}")
@@ -64,19 +73,24 @@ public class DocumentController {
             }
             return map;
         } catch(Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.INFO, "Exception", e);
             map.put("Status", "Error");
             return map;
         }
     }
     @PostMapping("/Update")
-    public void updateDocument(@RequestBody Document document) {
+    public void updateDocument(@RequestBody DocumentToDo documentToDo) {
         try {
+            Document document = new Document();
+            document.setName(documentToDo.getName());
+            document.setData(documentToDo.getData());
+            document.setPortfolio(documentToDo.getPortfolio());
+            document.setAdmins(documentToDo.getAdmins());
             if (this.documentService.findDocument(document.getId())) {
                 this.documentService.updateDocument(document);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.INFO, "Exception", e);
         }
     }
 }

@@ -5,6 +5,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import netscape.javascript.JSObject;
 import nl.teundeclercq.portofolio.model.Role;
 import nl.teundeclercq.portofolio.model.User;
+import nl.teundeclercq.portofolio.model.UserToDo;
 import nl.teundeclercq.portofolio.service.AdminService;
 import nl.teundeclercq.portofolio.service.UserService;
 import org.apache.tomcat.util.json.JSONParser;
@@ -15,11 +16,13 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.*;
 
 @RestController
 @RequestMapping("/User")
 @CrossOrigin(origins = "https://portfolios4.teun-school.nl")
 public class UserController {
+    private static final Logger LOGGER = Logger.getLogger( UserController.class.getName() );
     @Autowired
     private UserService userService;
     @Autowired
@@ -29,15 +32,20 @@ public class UserController {
         return userService.findAllAdmins();
     }
     @PostMapping("/AddUser/")
-    public Map<String, String> addUser(@RequestBody User user) throws SQLException {
+    public Map<String, String> addUser(@RequestBody UserToDo userToDo) throws SQLException {
         HashMap<String, String> map = new HashMap<>();
         try{
-            System.out.println(user);
+            User user = new User(userToDo.getId(),
+                    userToDo.getUsername(),
+                    userToDo.getEmail(),
+                    userToDo.getRole(),
+                    userToDo.getPortfolios(),
+                    userToDo.getAdmins());
             this.userService.createUser(user);
             map.put("Status", "Ok");
             return map;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.INFO, "Exception", e);
             map.put("Status", "Error");
             return map;
         }
@@ -56,7 +64,7 @@ public class UserController {
             }
             return map;
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.INFO, "Exception", e);
             map.put("Status", "Error");
             return map;
         }
@@ -70,7 +78,13 @@ public class UserController {
         }
     }
     @PutMapping("/Update")
-    public User UpdateUser(@RequestBody User user) {
+    public User UpdateUser(@RequestBody UserToDo userToDo) {
+        User user = new User(userToDo.getId(),
+                userToDo.getUsername(),
+                userToDo.getEmail(),
+                userToDo.getRole(),
+                userToDo.getPortfolios(),
+                userToDo.getAdmins());
         if(userService.userExists(user.getId())) {
             return userService.updateUser(user);
         } else {
