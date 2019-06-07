@@ -3,13 +3,14 @@ package nl.teundeclercq.portofolio.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
 @Getter
 @Setter
-public class User {
+public class User implements Serializable {
     @Id
     @Column(name = "user_id")
     private String id;
@@ -41,7 +42,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "user{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +

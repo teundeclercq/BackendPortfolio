@@ -9,7 +9,6 @@ import nl.teundeclercq.portofolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,7 +32,7 @@ public class UserController {
         return userService.findAllAdmins();
     }
     @PostMapping("/AddUser/")
-    public Map<String, String> addUser(@RequestBody UserToDo userToDo) throws SQLException {
+    public Map<String, String> addUser(@RequestBody UserToDo userToDo) {
         HashMap<String, String> map = new HashMap<>();
         try{
             User user = new User(userToDo.getId(),
@@ -58,10 +57,10 @@ public class UserController {
             if(userService.userExists(userId)){
                 this.userService.deleteUser(userId);
                 FirebaseAuth.getInstance().deleteUser(userId);
-                System.out.println("Succesfully deleted the user: " + userId);
+                logger.log(Level.INFO,"Succesfully deleted the user: " , userId);
                 map.put(status, "Ok");
             } else {
-                map.put(status, "User not deleted");
+                map.put(status, "user not deleted");
             }
             return map;
         } catch (Exception e) {
@@ -72,7 +71,7 @@ public class UserController {
     }
     @GetMapping("/All/{userId}")
     public List<User> getAllUsers(@PathVariable String userId) {
-        if(this.userService.findUser(userId).getRole() == Role.Admin) {
+        if(this.userService.findUser(userId).getRole() == Role.admin) {
             return this.userService.findAllUsers();
         } else {
             return emptyUsers;

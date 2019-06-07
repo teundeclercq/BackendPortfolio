@@ -44,7 +44,7 @@ public class PortfolioServiceTest {
         when(portfolioService.getPortfoliosById("UI12")).thenReturn(portfolioData);
 
         List<Portfolio> portfolios = portfolioService.getPortfoliosById("UI12");
-        assertEquals(portfolios.size(), 1);
+        assertEquals(1, portfolios.size());
 
         verify(portfolioRepository, times(1)).findByUserId("UI12");
     }
@@ -57,7 +57,7 @@ public class PortfolioServiceTest {
         when(portfolioService.getAllPortfolios()).thenReturn(portfolioData);
 
         List<Portfolio> portfolios = portfolioService.getAllPortfolios();
-        assertEquals(portfolios.size(), 1);
+        assertEquals(1, portfolios.size());
         verify(portfolioRepository, times(1)).findAll();
     }
 

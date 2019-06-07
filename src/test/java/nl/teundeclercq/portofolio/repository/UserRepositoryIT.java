@@ -2,7 +2,6 @@ package nl.teundeclercq.portofolio.repository;
 
 import nl.teundeclercq.portofolio.model.Role;
 import nl.teundeclercq.portofolio.model.User;
-import nl.teundeclercq.portofolio.service.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -45,15 +44,15 @@ public class UserRepositoryIT {
         adminList = new ArrayList<>();
         userList = new ArrayList<>();
 
-        userUser = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.User, null, null);
-        admin = new User("UI13", "AnneSchroen", "anneschroen@gmail.com", Role.Admin, null, null);
+        userUser = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.user, null, null);
+        admin = new User("UI13", "AnneSchroen", "anneschroen@gmail.com", Role.admin, null, null);
         userList.add(userUser);
         adminList.add(admin);
 
         testEntityManager.persist(admin);
         testEntityManager.persist(userUser);
-        when(userRepository.findUsersByRole(Role.Admin)).thenReturn(adminList);
-        when(userRepository.findUsersByRole(Role.User)).thenReturn(userList);
+        when(userRepository.findUsersByRole(Role.admin)).thenReturn(adminList);
+        when(userRepository.findUsersByRole(Role.user)).thenReturn(userList);
         when(userRepository.findById(userUser.getId())).thenReturn(Optional.of(userUser));
         when(userRepository.findById(admin.getId())).thenReturn(Optional.of(admin));
         when(userRepository.save(userUser)).thenReturn(userUser);
@@ -63,12 +62,12 @@ public class UserRepositoryIT {
 
     @Test
     public void findUsersByRole() {
-        List<User> users = userRepository.findUsersByRole(Role.User);
+        List<User> users = userRepository.findUsersByRole(Role.user);
 
-        assertEquals(users.size(), 1);
+        assertEquals(1, users.size());
         assertEquals(users.get(0).getId(), this.userUser.getId());
 
-        verify(userRepository, times(1)).findUsersByRole(Role.User);
+        verify(userRepository, times(1)).findUsersByRole(Role.user);
     }
 
     @Test
@@ -97,7 +96,7 @@ public class UserRepositoryIT {
         userRepository.deleteById(user.get().getId());
         List<User> userList = new ArrayList<>();
         userRepository.findAll().forEach(userList::add);
-        assertEquals(userList.size(), 0);
+        assertEquals(0, userList.size());
         verify(userRepository, times(1)).deleteById("UI12");
 
     }

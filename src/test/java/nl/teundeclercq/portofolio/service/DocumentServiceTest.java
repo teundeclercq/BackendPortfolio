@@ -32,7 +32,7 @@ public class DocumentServiceTest {
         documentData.add(document);
         when(documentService.getAllDocuments()).thenReturn(documentData);
         List<Document> documents = documentService.getAllDocuments();
-        assertEquals(documents.size(), 1);
+        assertEquals(1, documents.size());
         verify(documentRepository, times(1)).findAll();
     }
 
@@ -43,7 +43,7 @@ public class DocumentServiceTest {
         documentData.add(document);
         when(documentService.getDocumentsByPortfolioId(1)).thenReturn(documentData);
         List<Document> documents = documentService.getDocumentsByPortfolioId(1);
-        assertEquals(documents.size(), 1);
+        assertEquals(1, documents.size());
         verify(documentRepository, times(1)).findByPortfolioId(1);
 
     }

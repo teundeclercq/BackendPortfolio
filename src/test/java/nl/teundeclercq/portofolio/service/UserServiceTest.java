@@ -1,6 +1,5 @@
 package nl.teundeclercq.portofolio.service;
 
-import nl.teundeclercq.portofolio.model.Admin;
 import nl.teundeclercq.portofolio.model.Role;
 import nl.teundeclercq.portofolio.model.User;
 import nl.teundeclercq.portofolio.repository.AdminRepository;
@@ -13,8 +12,6 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.mockito.Mockito.*;
-
-import javax.annotation.meta.When;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,14 +49,14 @@ public class UserServiceTest {
         when(userService.findAllUsers()).thenReturn(userData);
 
         List<User> users = userService.findAllUsers();
-        assertEquals(users.size(), 1);
+        assertEquals(1, users.size());
 
         verify(userRepository, times(1)).findAll();
     }
 
     @Test
     public void findAllAdmins() {
-        Role role = Role.Admin;
+        Role role = Role.admin;
         User user = new User();
         user.setRole(role);
         List<User> userData = new ArrayList<>();
@@ -67,7 +64,7 @@ public class UserServiceTest {
 
         when(userService.findAllAdmins()).thenReturn(userData);
         List<User> users = userService.findAllAdmins();
-        assertEquals(users.size(), 1);
+        assertEquals(1, users.size());
         assertEquals(users.get(0).getRole(), role);
         verify(userRepository, times(1)).findUsersByRole(role);
     }

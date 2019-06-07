@@ -45,16 +45,5 @@ public class Portfolio implements Serializable {
         this.documents = documents;
         this.user = user;
     }
-    //    public Portfolio(String title, String subtitle, String description) {
-//        this.title = title;
-//        this.subtitle = subtitle;
-//        this.description = description;
-//    }
-//
-//    public Portfolio(String title, String subtitle, String description, User user) {
-//        this.title = title;
-//        this.subtitle = subtitle;
-//        this.description = description;
-//        this.user = user;
-//    }
+
 }
