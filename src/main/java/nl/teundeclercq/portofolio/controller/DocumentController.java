@@ -17,7 +17,9 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/Document")
-@CrossOrigin(origins = "https://portfolios4.teun-school.nl", maxAge = 3600, methods = {RequestMethod.GET,  RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT}, allowedHeaders = {"Access-Control-Allow-Origin"})
+@CrossOrigin(maxAge = 3600,
+             methods = {RequestMethod.GET,  RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT},
+             allowedHeaders = {"Access-Control-Allow-Origin"})
 public class DocumentController {
     private static final Logger logger = Logger.getLogger( DocumentController.class.getName() );
     private static List<Document> emptyDocuments = new ArrayList<>();
