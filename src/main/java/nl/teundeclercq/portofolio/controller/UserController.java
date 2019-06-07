@@ -23,6 +23,7 @@ public class UserController {
     private static List<User> emptyUsers = new ArrayList<>();
     private static String exceptionMsg = "Exception";
     private static String status = "Status";
+    private static String statusMessage = "Succesfully deleted the USER: ";
     @Autowired
     private UserService userService;
     @Autowired
@@ -57,7 +58,7 @@ public class UserController {
             if(userService.userExists(userId)){
                 this.userService.deleteUser(userId);
                 FirebaseAuth.getInstance().deleteUser(userId);
-                logger.log(Level.INFO,"Succesfully deleted the USER: {userId} " , userId);
+                logger.log(Level.INFO,statusMessage , userId);
                 map.put(status, "Ok");
             } else {
                 map.put(status, "USER not deleted");
