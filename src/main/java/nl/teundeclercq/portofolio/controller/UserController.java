@@ -57,7 +57,7 @@ public class UserController {
             if(userService.userExists(userId)){
                 this.userService.deleteUser(userId);
                 FirebaseAuth.getInstance().deleteUser(userId);
-                logger.log(Level.INFO,"Succesfully deleted the USER: " + userId);
+                logger.log(Level.INFO,"Succesfully deleted the USER: {userId} " , userId);
                 map.put(status, "Ok");
             } else {
                 map.put(status, "USER not deleted");
