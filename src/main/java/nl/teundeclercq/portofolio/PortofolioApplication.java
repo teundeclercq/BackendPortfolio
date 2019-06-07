@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 @SpringBootApplication
 public class PortofolioApplication extends SpringBootServletInitializer {
-	private static final Logger LOGGER = Logger.getLogger( PortofolioApplication.class.getName() );
+	private static final Logger logger = Logger.getLogger( PortofolioApplication.class.getName() );
 	public static void main(String[] args) {
 		SpringApplication.run(PortofolioApplication.class, args);
 		try {
@@ -24,7 +24,7 @@ public class PortofolioApplication extends SpringBootServletInitializer {
 
 			FirebaseApp.initializeApp(options);
 		} catch (IOException e) {
-			LOGGER.log(Level.WARNING, "IOException", e);
+			logger.log(Level.WARNING, "IOException", e);
 		}
 	}
 }

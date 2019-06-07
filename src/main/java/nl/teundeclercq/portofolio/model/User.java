@@ -3,7 +3,6 @@ package nl.teundeclercq.portofolio.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
-import java.lang.reflect.Type;
 import java.util.Set;
 
 @Entity
