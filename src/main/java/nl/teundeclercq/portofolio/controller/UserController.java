@@ -17,8 +17,7 @@ import java.util.logging.*;
 
 @RestController
 @RequestMapping("/User")
-@CrossOrigin(origins = "https://portfolios4.teun-school.nl",
-             maxAge = 3600 ,methods = {RequestMethod.GET,
+@CrossOrigin(maxAge = 3600 ,methods = {RequestMethod.GET,
              RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT},
              allowedHeaders = {"Access-Control-Allow-Origin"})
 public class UserController {

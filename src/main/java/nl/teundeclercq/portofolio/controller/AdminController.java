@@ -11,7 +11,9 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/Admin")
-@CrossOrigin(origins = "https://portfolios4.teun-school.nl", maxAge = 3600, methods = {RequestMethod.GET,  RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT}, allowedHeaders = {"Access-Control-Allow-Origin"})
+@CrossOrigin(maxAge = 3600,
+             methods = {RequestMethod.GET,  RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT},
+             allowedHeaders = {"Access-Control-Allow-Origin"})
 public class AdminController {
     private static final Logger logger = Logger.getLogger( AdminController.class.getName() );
     private static String status = "status";
