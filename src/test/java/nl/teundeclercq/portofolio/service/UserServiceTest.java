@@ -56,7 +56,7 @@ public class UserServiceTest {
 
     @Test
     public void findAllAdmins() {
-        Role role = Role.admin;
+        Role role = Role.ADMIN;
         User user = new User();
         user.setRole(role);
         List<User> userData = new ArrayList<>();

@@ -6,14 +6,15 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "admin")
+@Table(name = "ADMIN")
 @Getter
 @Setter
 @ToString
-public class Admin {
+public class Admin implements Serializable {
     @Id
     @Column(name = "admin_id")
     private String id;

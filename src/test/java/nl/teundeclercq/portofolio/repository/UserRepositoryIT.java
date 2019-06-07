@@ -44,15 +44,15 @@ public class UserRepositoryIT {
         adminList = new ArrayList<>();
         userList = new ArrayList<>();
 
-        userUser = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.user, null, null);
-        admin = new User("UI13", "AnneSchroen", "anneschroen@gmail.com", Role.admin, null, null);
+        userUser = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.USER, null, null);
+        admin = new User("UI13", "AnneSchroen", "anneschroen@gmail.com", Role.ADMIN, null, null);
         userList.add(userUser);
         adminList.add(admin);
 
         testEntityManager.persist(admin);
         testEntityManager.persist(userUser);
-        when(userRepository.findUsersByRole(Role.admin)).thenReturn(adminList);
-        when(userRepository.findUsersByRole(Role.user)).thenReturn(userList);
+        when(userRepository.findUsersByRole(Role.ADMIN)).thenReturn(adminList);
+        when(userRepository.findUsersByRole(Role.USER)).thenReturn(userList);
         when(userRepository.findById(userUser.getId())).thenReturn(Optional.of(userUser));
         when(userRepository.findById(admin.getId())).thenReturn(Optional.of(admin));
         when(userRepository.save(userUser)).thenReturn(userUser);
@@ -62,12 +62,12 @@ public class UserRepositoryIT {
 
     @Test
     public void findUsersByRole() {
-        List<User> users = userRepository.findUsersByRole(Role.user);
+        List<User> users = userRepository.findUsersByRole(Role.USER);
 
         assertEquals(1, users.size());
         assertEquals(users.get(0).getId(), this.userUser.getId());
 
-        verify(userRepository, times(1)).findUsersByRole(Role.user);
+        verify(userRepository, times(1)).findUsersByRole(Role.USER);
     }
 
     @Test

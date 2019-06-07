@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 @Entity
-@Table(name = "user")
+@Table(name = "USER")
 @Getter
 @Setter
 public class User implements Serializable {
@@ -25,7 +25,7 @@ public class User implements Serializable {
         this.id = id;
     }
     @JsonIgnore
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "USER")
     private Set<Portfolio> portfolios;
     @ManyToMany(mappedBy = "users")
     private Set<Admin> admins;
@@ -42,7 +42,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "user{" +
+        return "USER{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +

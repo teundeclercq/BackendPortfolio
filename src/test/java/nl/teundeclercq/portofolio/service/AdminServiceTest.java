@@ -34,8 +34,8 @@ public class AdminServiceTest {
 
 
 
-//        when(adminService.addUserToAdmin(id)).thenReturn(admin);
-//        verify(adminRepository, times(1)).save(admin);
+//        when(adminService.addUserToAdmin(id)).thenReturn(ADMIN);
+//        verify(adminRepository, times(1)).save(ADMIN);
 
     }
 
@@ -51,9 +51,9 @@ public class AdminServiceTest {
     @Test
     public void isAdmin() {
 //        String id = "UI127";
-//        admin admin = new admin(id);
-//        adminRepository.save(admin);
-//        when(adminService.isAdmin(id)).thenReturn(Optional.of(admin).orElse(null));
+//        ADMIN ADMIN = new ADMIN(id);
+//        adminRepository.save(ADMIN);
+//        when(adminService.isAdmin(id)).thenReturn(Optional.of(ADMIN).orElse(null));
 //        verify(adminRepository, times(1)).existsById(id);
     }
 
