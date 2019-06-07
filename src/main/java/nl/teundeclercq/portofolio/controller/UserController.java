@@ -17,9 +17,7 @@ import java.util.logging.*;
 
 @RestController
 @RequestMapping("/User")
-@CrossOrigin(maxAge = 3600 ,methods = {RequestMethod.GET,
-             RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT},
-             allowedHeaders = {"Access-Control-Allow-Origin"})
+@CrossOrigin(origins = "*")
 public class UserController {
     private static final Logger logger = Logger.getLogger( UserController.class.getName() );
     private static List<User> emptyUsers = new ArrayList<>();
