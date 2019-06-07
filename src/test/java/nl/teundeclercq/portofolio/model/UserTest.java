@@ -1,14 +1,11 @@
 package nl.teundeclercq.portofolio.model;
 
-import nl.teundeclercq.portofolio.repository.AdminRepository;
 import nl.teundeclercq.portofolio.repository.PortfolioRepository;
-import nl.teundeclercq.portofolio.service.AdminService;
 import nl.teundeclercq.portofolio.service.PortfolioService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -57,7 +54,7 @@ public class UserTest {
 
     @Test
     public void getRole() {
-        Role role = Role.User;
+        Role role = Role.user;
         user.setRole(role);
         assertEquals(role, user.getRole());
     }
@@ -70,7 +67,7 @@ public class UserTest {
         when(portfolioRepository.findAll()).thenReturn(portfolioData);
 
         List<Portfolio> portfolios = portfolioService.getAllPortfolios();
-        assertEquals(portfolios.size(), 1);
+        assertEquals( 1, portfolios.size());
         verify(portfolioRepository, times(1)).findAll();
     }
 
@@ -79,7 +76,7 @@ public class UserTest {
         String username = "teundeclercq";
         String email = "teundeclercq@gmail.com";
         String id = "UI12";
-        Role role = Role.User;
+        Role role = Role.user;
         HashSet portfolios = new HashSet();
         portfolios.add(new Portfolio());
         HashSet admins = new HashSet();
@@ -91,7 +88,7 @@ public class UserTest {
         user.setRole(role);
         user.setPortfolios(portfolios);
         user.setAdmins(admins);
-        String toString = "User{" +
+        String toString = "user{" +
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +

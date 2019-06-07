@@ -47,7 +47,7 @@ public class PortfolioRepositoryIT {
         MockitoAnnotations.initMocks(this);
         portfolios = new HashSet<>();
         portfolioList = new ArrayList<>();
-        user = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.User, portfolios, null);
+        user = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.user, portfolios, null);
         portfolio = new Portfolio("teun", "test", "test", "test", null, user);
         portfolios.add(portfolio);
         portfolioList.add(portfolio);
@@ -62,7 +62,7 @@ public class PortfolioRepositoryIT {
     @Test
     public void findByUserId() {
         List<Portfolio> portfolioList = portfolioRepository.findByUserId("UI12");
-        assertEquals(portfolioList.size(), 1);
+        assertEquals(1, portfolioList.size());
         verify(portfolioRepository, times(1)).findByUserId("UI12");
     }
     @Test
@@ -78,7 +78,7 @@ public class PortfolioRepositoryIT {
         portfolioRepository.deleteById(portfolioId);
         List<Portfolio> portfolios = new ArrayList<>();
         portfolioRepository.findAll().forEach(portfolios::add);
-        assertEquals(portfolios.size(), 0);
+        assertEquals(0 ,portfolios.size());
         verify(portfolioRepository, times(1)).deleteById(portfolioId);
     }
     @Test

@@ -7,21 +7,17 @@ import nl.teundeclercq.portofolio.model.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
 
-import javax.sound.sampled.Port;
 import java.util.*;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -49,7 +45,7 @@ public class DocumentRepositoryIT {
         MockitoAnnotations.initMocks(this);
         HashSet<Portfolio> portfolios = new HashSet<>();
         HashSet<Document> documents = new HashSet<>();
-        user = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.User, portfolios, null);
+        user = new User("UI12", "teundeclercq", "teundeclercq@gmail.com", Role.user, portfolios, null);
         portfolio = new Portfolio("teun", "test", "test", "test", documents, user);
         document = new Document("documentnaam", "documentdata", portfolio, null);
         portfolios.add(portfolio);
@@ -65,9 +61,9 @@ public class DocumentRepositoryIT {
     @Test
     public void findByPortfolioId() {
         List<Portfolio> portfolio = portfolioRepository.findByUserId("UI12");
-        assertEquals(portfolio.size(), 1);
+        assertEquals(1, portfolio.size());
         List<Document> documentList = documentRepository.findByPortfolioId(portfolio.get(0).getId());
-        assertEquals(documentList.size(), 1);
+        assertEquals(1, documentList.size());
     }
 
     @Test
@@ -93,6 +89,6 @@ public class DocumentRepositoryIT {
         documentRepository.delete(document);
         List<Document> documents = new ArrayList<>();
         documentRepository.findAll().forEach(documents::add);
-        assertEquals(documents.size(), 0);
+        assertEquals(0, documents.size());
     }
 }

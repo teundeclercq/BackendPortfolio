@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +20,6 @@ import java.util.logging.Logger;
 @CrossOrigin(origins = "https://portfolios4.teun-school.nl", maxAge = 3600)
 public class PortfolioController {
     private static final Logger logger = Logger.getLogger(PortfolioController.class.getName());
-    private static List<Portfolio> emptyPortfolios = new ArrayList<>();
     private static String exceptionMsg = "Exception";
     private static String status = "Status";
     @Autowired
@@ -40,8 +38,8 @@ public class PortfolioController {
     }
 
     @GetMapping("/Get/{PortfolioId}")
-    public Portfolio getPortfolio(@PathVariable int PortfolioId) {
-        return portfolioService.getPortfolioById(PortfolioId);
+    public Portfolio getPortfolio(@PathVariable int portfolioId) {
+        return portfolioService.getPortfolioById(portfolioId);
     }
 
     @PostMapping(value = "/AddByUID", consumes = MediaType.APPLICATION_JSON_VALUE)

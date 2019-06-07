@@ -51,7 +51,7 @@ public class AdminServiceTest {
     @Test
     public void isAdmin() {
 //        String id = "UI127";
-//        Admin admin = new Admin(id);
+//        admin admin = new admin(id);
 //        adminRepository.save(admin);
 //        when(adminService.isAdmin(id)).thenReturn(Optional.of(admin).orElse(null));
 //        verify(adminRepository, times(1)).existsById(id);
@@ -67,7 +67,7 @@ public class AdminServiceTest {
 
         List<Admin> admins = adminService.getAllAdmins();
 
-        assertEquals(admins.size(), 1);
+        assertEquals(1, admins.size());
         verify(adminRepository, times(1)).findAll();
     }
 }

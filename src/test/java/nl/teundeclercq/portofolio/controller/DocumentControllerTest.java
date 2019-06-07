@@ -53,7 +53,7 @@ public class DocumentControllerTest {
 //        document1.setName("teundoc1.docx");
 //        documentSet.add(document);
 //        documentSet.add(document1);
-//        user = new User();
+//        user = new user();
 //        user.setId("1");
 //        mockMvc = MockMvcBuilders
 //                .standaloneSetup(documentController)
