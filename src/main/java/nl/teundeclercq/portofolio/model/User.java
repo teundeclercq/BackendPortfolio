@@ -25,7 +25,7 @@ public class User implements Serializable {
         this.id = id;
     }
     @JsonIgnore
-    @OneToMany(mappedBy = "USER")
+    @OneToMany(mappedBy = "user")
     private Set<Portfolio> portfolios;
     @ManyToMany(mappedBy = "users")
     private Set<Admin> admins;
