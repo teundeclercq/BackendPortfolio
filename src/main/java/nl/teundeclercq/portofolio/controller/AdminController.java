@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/Admin")
-@CrossOrigin(origins = "*")
 public class AdminController {
     private static final Logger logger = Logger.getLogger( AdminController.class.getName() );
     private static String status = "status";

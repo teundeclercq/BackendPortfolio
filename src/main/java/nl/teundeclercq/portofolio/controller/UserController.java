@@ -17,7 +17,7 @@ import java.util.logging.*;
 
 @RestController
 @RequestMapping("/User")
-@CrossOrigin
+
 public class UserController {
     private static final Logger logger = Logger.getLogger( UserController.class.getName() );
     private static List<User> emptyUsers = new ArrayList<>();
