@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.sound.sampled.Port;
-import java.awt.*;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +20,10 @@ import java.util.logging.Logger;
 @RequestMapping("/Portfolio")
 @CrossOrigin(origins = "https://portfolios4.teun-school.nl", maxAge = 3600)
 public class PortfolioController {
-    private static final Logger LOGGER = Logger.getLogger(PortfolioController.class.getName());
+    private static final Logger logger = Logger.getLogger(PortfolioController.class.getName());
+    private static List<Portfolio> emptyPortfolios = new ArrayList<>();
+    private static String exceptionMsg = "Exception";
+    private static String status = "Status";
     @Autowired
     private PortfolioService portfolioService;
     @Autowired
@@ -34,17 +35,17 @@ public class PortfolioController {
     }
 
     @GetMapping("/AllByUID/{userId}")
-    public List<Portfolio> getPortfoliosById(@PathVariable String userId) throws SQLException {
+    public List<Portfolio> getPortfoliosById(@PathVariable String userId) {
         return portfolioService.getPortfoliosById(userId);
     }
 
     @GetMapping("/Get/{PortfolioId}")
-    public Portfolio getPortfolio(@PathVariable int PortfolioId) throws SQLException {
+    public Portfolio getPortfolio(@PathVariable int PortfolioId) {
         return portfolioService.getPortfolioById(PortfolioId);
     }
 
     @PostMapping(value = "/AddByUID", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void addPortfolioById(@RequestBody PortfolioToDo portfolioToDo) throws SQLException {
+    public void addPortfolioById(@RequestBody PortfolioToDo portfolioToDo) {
         try {
             Portfolio portfolio = new Portfolio(portfolioToDo.getTitle(),
                     portfolioToDo.getSubtitle(),
@@ -54,31 +55,31 @@ public class PortfolioController {
                     portfolioToDo.getUser());
             portfolioService.addPortfolio(portfolio);
         } catch (Exception e) {
-            LOGGER.log(Level.INFO, "Exception", e);
+            logger.log(Level.INFO, exceptionMsg, e);
         }
     }
 
     @DeleteMapping("/DeleteByUID/{portfolioID}")
-    public Map<String, String> deletePortfolioById(@PathVariable int portfolioID) throws SQLException {
+    public Map<String, String> deletePortfolioById(@PathVariable int portfolioID) {
         HashMap<String, String> map = new HashMap<>();
         try {
             if (portfolioService.portfolioExists(portfolioID)) {
                 portfolioService.deletePortfolio(portfolioID);
-                map.put("Status", "Ok");
+                map.put(status, "Ok");
             } else {
-                map.put("Status", "Could not delete portfolio");
+                map.put(status, "Could not delete portfolio");
             }
             return map;
         } catch (Exception e) {
-            LOGGER.log(Level.INFO, "Exception", e);
-            map.put("Status", "Error");
+            logger.log(Level.INFO, exceptionMsg, e);
+            map.put(status, "Error");
             return map;
         }
 
     }
 
     @PostMapping("/Portfolio/Update")
-    public void updatePortfolio(@RequestBody PortfolioToDo portfolioToDo) throws SQLException {
+    public void updatePortfolio(@RequestBody PortfolioToDo portfolioToDo) {
         try {
             Portfolio portfolio = new Portfolio(portfolioToDo.getTitle(),
                                                 portfolioToDo.getSubtitle(),
@@ -90,7 +91,7 @@ public class PortfolioController {
                 portfolioService.updatePortfolio(portfolio);
             }
         } catch (Exception e) {
-            LOGGER.log(Level.INFO, "Exception", e);
+            logger.log(Level.INFO, exceptionMsg, e);
         }
     }
 

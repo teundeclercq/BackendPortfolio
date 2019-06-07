@@ -1,11 +1,8 @@
 package nl.teundeclercq.portofolio.controller;
-
-import com.google.firebase.auth.FirebaseAuth;
 import nl.teundeclercq.portofolio.model.Admin;
 import nl.teundeclercq.portofolio.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +13,9 @@ import java.util.logging.Logger;
 @RequestMapping("/Admin")
 @CrossOrigin(origins = "https://portfolios4.teun-school.nl", maxAge = 3600)
 public class AdminController {
-    private static final Logger LOGGER = Logger.getLogger( AdminController.class.getName() );
+    private static final Logger logger = Logger.getLogger( AdminController.class.getName() );
+    private static String status = "status";
+    private static String exceptionMsg = "Exception";
 
     @Autowired
     private AdminService adminService;
@@ -33,11 +32,11 @@ public class AdminController {
         HashMap<String, String> map = new HashMap<>();
         try {
             this.adminService.addUserToAdmin(userId);
-            map.put("Status", "Ok");
+            map.put(status, "Ok");
             return map;
         } catch(Exception e) {
-            LOGGER.log(Level.INFO, "Exception", e);
-            map.put("Status", "Error");
+            logger.log(Level.INFO, exceptionMsg, e);
+            map.put(status, "Error");
             return map;
         }
     }
@@ -47,14 +46,14 @@ public class AdminController {
         try {
             if (adminService.isAdmin(userId) != null) {
                 adminService.deleteUserIdFromAdmin(userId);
-                map.put("Status", "Ok");
+                map.put(status, "Ok");
             } else {
-                map.put("Status", "Not Deleted");
+                map.put(status, "Not Deleted");
             }
             return map;
         } catch(Exception e) {
-            LOGGER.log(Level.INFO, "Exception", e);
-            map.put("Status", "Error");
+            logger.log(Level.INFO, exceptionMsg, e);
+            map.put(status, "Error");
             return map;
         }
     }

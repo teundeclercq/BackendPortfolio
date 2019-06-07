@@ -3,12 +3,12 @@ package nl.teundeclercq.portofolio.controller;
 import nl.teundeclercq.portofolio.model.Document;
 import nl.teundeclercq.portofolio.model.DocumentToDo;
 import nl.teundeclercq.portofolio.model.User;
-import nl.teundeclercq.portofolio.repository.DocumentRepository;
-import nl.teundeclercq.portofolio.repository.UserRepository;
 import nl.teundeclercq.portofolio.service.DocumentService;
 import nl.teundeclercq.portofolio.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +19,11 @@ import java.util.logging.Logger;
 @RequestMapping("/Document")
 @CrossOrigin(origins = "https://portfolios4.teun-school.nl", maxAge = 3600)
 public class DocumentController {
-    private static final Logger LOGGER = Logger.getLogger( DocumentController.class.getName() );
+    private static final Logger logger = Logger.getLogger( DocumentController.class.getName() );
+    private static List<Document> emptyDocuments = new ArrayList<>();
+    private static String exceptionMsg = "Exception";
+    private static String status = "Status";
+
 
     @Autowired
     private DocumentService documentService;
@@ -35,7 +39,7 @@ public class DocumentController {
         if(user != null) {
             return this.documentService.getAllDocuments();
         } else {
-            return null;
+            return emptyDocuments;
         }
     }
     @GetMapping("/ByPortfolio/{id}")
@@ -44,7 +48,7 @@ public class DocumentController {
         if(!documents.isEmpty()) {
             return documents;
         } else {
-            return null;
+            return emptyDocuments;
         }
     }
 
@@ -58,7 +62,7 @@ public class DocumentController {
             document.setAdmins(documentToDo.getAdmins());
             documentService.addDocument(document);
         } catch (Exception e) {
-            LOGGER.log(Level.INFO, "Exception", e);
+            logger.log(Level.INFO, exceptionMsg, e);
         }
     }
     @DeleteMapping("/Delete/{id}")
@@ -67,14 +71,14 @@ public class DocumentController {
         try {
             if(this.documentService.findDocument(id)) {
                 this.documentService.deleteDocument(id);
-                map.put("Status", "Ok");
+                map.put(status, "Ok");
             } else {
-                map.put("Status", "Can't find document");
+                map.put(status, "Can't find document");
             }
             return map;
         } catch(Exception e) {
-            LOGGER.log(Level.INFO, "Exception", e);
-            map.put("Status", "Error");
+            logger.log(Level.INFO, exceptionMsg, e);
+            map.put(status, "Error");
             return map;
         }
     }
@@ -90,7 +94,7 @@ public class DocumentController {
                 this.documentService.updateDocument(document);
             }
         } catch (Exception e) {
-            LOGGER.log(Level.INFO, "Exception", e);
+            logger.log(Level.INFO, exceptionMsg, e);
         }
     }
 }
