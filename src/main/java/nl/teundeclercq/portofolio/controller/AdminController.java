@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/Admin")
 @CrossOrigin(origins = "https://portfolios4.teun-school.nl", maxAge = 3600)
 public class AdminController {
+    private static final Logger LOGGER = Logger.getLogger( AdminController.class.getName() );
+
     @Autowired
     private AdminService adminService;
     @GetMapping("/All")
@@ -32,7 +36,7 @@ public class AdminController {
             map.put("Status", "Ok");
             return map;
         } catch(Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.INFO, "Exception", e);
             map.put("Status", "Error");
             return map;
         }
@@ -49,7 +53,7 @@ public class AdminController {
             }
             return map;
         } catch(Exception e) {
-            e.printStackTrace();
+            LOGGER.log(Level.INFO, "Exception", e);
             map.put("Status", "Error");
             return map;
         }

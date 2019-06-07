@@ -7,12 +7,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.core.io.ClassPathResource;
-
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @SpringBootApplication
 public class PortofolioApplication extends SpringBootServletInitializer {
-
+	private static final Logger LOGGER = Logger.getLogger( PortofolioApplication.class.getName() );
 	public static void main(String[] args) {
 		SpringApplication.run(PortofolioApplication.class, args);
 		try {
@@ -23,7 +24,7 @@ public class PortofolioApplication extends SpringBootServletInitializer {
 
 			FirebaseApp.initializeApp(options);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.WARNING, "IOException", e);
 		}
 	}
 }
