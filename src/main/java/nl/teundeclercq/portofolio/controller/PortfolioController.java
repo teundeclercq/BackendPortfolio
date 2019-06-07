@@ -17,9 +17,6 @@ import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/Portfolio")
-@CrossOrigin(maxAge = 3600,
-             methods = {RequestMethod.GET,  RequestMethod.DELETE, RequestMethod.POST, RequestMethod.PUT},
-             allowedHeaders = {"Access-Control-Allow-Origin"})
 public class PortfolioController {
     private static final Logger logger = Logger.getLogger(PortfolioController.class.getName());
     private static String exceptionMsg = "Exception";
