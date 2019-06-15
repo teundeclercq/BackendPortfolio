@@ -11,7 +11,9 @@ public class CorsFilter {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("https://portfolios4.teun-school.nl");
+                registry.addMapping("/**")
+                        .allowedOrigins("https://portfolios4.teun-school.nl")
+                        .allowedMethods("DELETE", "GET", "PUT", "POST");
             }
         };
     }

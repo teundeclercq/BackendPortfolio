@@ -69,7 +69,7 @@ public class PortfolioController {
             return map;
         } catch (Exception e) {
             logger.log(Level.INFO, exceptionMsg, e);
-            map.put(status, "Error");
+            map.put(exceptionMsg, "Error");
             return map;
         }
 
