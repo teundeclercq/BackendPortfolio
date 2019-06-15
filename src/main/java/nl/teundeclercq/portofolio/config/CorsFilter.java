@@ -12,7 +12,7 @@ public class CorsFilter {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("https://portfolios4.teun-school.nl")
+                        .allowedOrigins("https://tomcat.teun-school.nl/BackendPortfolio")
                         .allowedMethods("DELETE", "GET", "PUT", "POST");
             }
         };
