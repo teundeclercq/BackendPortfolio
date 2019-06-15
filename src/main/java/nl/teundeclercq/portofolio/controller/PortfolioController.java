@@ -75,16 +75,17 @@ public class PortfolioController {
 
     }
 
-    @PostMapping("/Portfolio/Update")
+    @PostMapping("/Update")
     public void updatePortfolio(@RequestBody PortfolioToDo portfolioToDo) {
         try {
-            Portfolio portfolio = new Portfolio(portfolioToDo.getTitle(),
+            Portfolio portfolio = new Portfolio(portfolioToDo.getId(),
+                                                portfolioToDo.getTitle(),
                                                 portfolioToDo.getSubtitle(),
                                                 portfolioToDo.getDescription(),
                                                 portfolioToDo.getPortfolioImage(),
                                                 portfolioToDo.getDocuments(),
                                                 portfolioToDo.getUser());
-            if (portfolioService.portfolioExists(portfolio.getId())) {
+            if (portfolioService.portfolioExists(portfolioToDo.getId())) {
                 portfolioService.updatePortfolio(portfolio);
             }
         } catch (Exception e) {
