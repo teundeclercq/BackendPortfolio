@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 
 
 @RestController
-@RequestMapping("/Portfolio")
+@RequestMapping("/Portfolios")
 public class PortfolioController {
     private static final Logger logger = Logger.getLogger(PortfolioController.class.getName());
     private static String exceptionMsg = "Exception";
@@ -26,22 +26,22 @@ public class PortfolioController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/All")
+    @GetMapping("/")
     public List<Portfolio> getAllPortfolios() {
         return portfolioService.getAllPortfolios();
     }
 
-    @GetMapping("/AllByUID/{userId}")
+    @GetMapping(value = "/User/{userId}")
     public List<Portfolio> getPortfoliosById(@PathVariable String userId) {
         return portfolioService.getPortfoliosById(userId);
     }
 
-    @GetMapping("/Get/{PortfolioId}")
+    @GetMapping(value = "/{portfolioId}")
     public Portfolio getPortfolio(@PathVariable int portfolioId) {
         return portfolioService.getPortfolioById(portfolioId);
     }
 
-    @PostMapping(value = "/AddByUID", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void addPortfolioById(@RequestBody PortfolioToDo portfolioToDo) {
         try {
             Portfolio portfolio = new Portfolio(portfolioToDo.getTitle(),
@@ -56,7 +56,7 @@ public class PortfolioController {
         }
     }
 
-    @DeleteMapping("/DeleteByUID/{portfolioID}")
+    @DeleteMapping("/{portfolioID}")
     public Map<String, String> deletePortfolioById(@PathVariable int portfolioID) {
         HashMap<String, String> map = new HashMap<>();
         try {
@@ -75,7 +75,7 @@ public class PortfolioController {
 
     }
 
-    @PostMapping("/Update")
+    @PutMapping("/")
     public void updatePortfolio(@RequestBody PortfolioToDo portfolioToDo) {
         try {
             Portfolio portfolio = new Portfolio(portfolioToDo.getId(),
