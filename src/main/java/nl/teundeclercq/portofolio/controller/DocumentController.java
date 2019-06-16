@@ -16,7 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/Document")
+@RequestMapping("/Documents")
 public class DocumentController {
     private static final Logger logger = Logger.getLogger( DocumentController.class.getName() );
     private static List<Document> emptyDocuments = new ArrayList<>();
@@ -32,18 +32,18 @@ public class DocumentController {
         this.documentService = documentService;
     }
 
-    @GetMapping("/All/{id}")
-    public List<Document> getAllDocuments(@PathVariable String id) {
-        User user = this.userService.findUser(id);
+    @GetMapping(value = "/User/{userId}")
+    public List<Document> getAllDocuments(@PathVariable String userId) {
+        User user = this.userService.findUser(userId);
         if(user != null) {
             return this.documentService.getAllDocuments();
         } else {
             return emptyDocuments;
         }
     }
-    @GetMapping("/ByPortfolio/{id}")
-    public List<Document> getDocumentsByPortfolioId(@PathVariable int id) {
-        List<Document> documents = this.documentService.getDocumentsByPortfolioId(id);
+    @GetMapping(value = "/Portfolio/{portfolioId}")
+    public List<Document> getDocumentsByPortfolioId(@PathVariable int portfolioId) {
+        List<Document> documents = this.documentService.getDocumentsByPortfolioId(portfolioId);
         if(!documents.isEmpty()) {
             return documents;
         } else {
@@ -51,7 +51,7 @@ public class DocumentController {
         }
     }
 
-    @PostMapping("/Add")
+    @PostMapping("/")
     public void addDocument(@RequestBody DocumentToDo documentToDo) {
         try {
             Document document = new Document();
@@ -64,12 +64,12 @@ public class DocumentController {
             logger.log(Level.INFO, exceptionMsg, e);
         }
     }
-    @DeleteMapping("/Delete/{id}")
-    public Map<String, String> deleteDocument(@PathVariable int id) {
+    @DeleteMapping("/{documentId}")
+    public Map<String, String> deleteDocument(@PathVariable int documentId) {
         HashMap<String, String> map = new HashMap<>();
         try {
-            if(this.documentService.findDocument(id)) {
-                this.documentService.deleteDocument(id);
+            if(this.documentService.findDocument(documentId)) {
+                this.documentService.deleteDocument(documentId);
                 map.put(status, "Ok");
             } else {
                 map.put(status, "Can't find document");
@@ -81,7 +81,7 @@ public class DocumentController {
             return map;
         }
     }
-    @PostMapping("/Update")
+    @PutMapping("/")
     public void updateDocument(@RequestBody DocumentToDo documentToDo) {
         try {
             Document document = new Document();

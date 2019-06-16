@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.logging.*;
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/Users")
 
 public class UserController {
     private static final Logger logger = Logger.getLogger( UserController.class.getName() );
@@ -28,11 +28,11 @@ public class UserController {
     private UserService userService;
     @Autowired
     private AdminService adminService;
-    @GetMapping("/roleAdmin/")
+    @GetMapping("/Admin")
     public List<User> getAllAdminUsers() {
         return userService.findAllAdmins();
     }
-    @PostMapping("/AddUser/")
+    @PostMapping("/")
     public Map<String, String> addUser(@RequestBody UserToDo userToDo) {
         HashMap<String, String> map = new HashMap<>();
         try{
@@ -51,7 +51,7 @@ public class UserController {
             return map;
         }
     }
-    @DeleteMapping("/Delete/{userId}")
+    @DeleteMapping("/{userId}")
     public Map<String, String> deleteUser(@PathVariable String userId) {
         HashMap<String, String> map = new HashMap<>();
         try{
@@ -70,7 +70,7 @@ public class UserController {
             return map;
         }
     }
-    @GetMapping("/All/{userId}")
+    @GetMapping("/{userId}")
     public List<User> getAllUsers(@PathVariable String userId) {
         if(this.userService.findUser(userId).getRole() == Role.ADMIN) {
             return this.userService.findAllUsers();
@@ -78,7 +78,7 @@ public class UserController {
             return emptyUsers;
         }
     }
-    @PutMapping("/Update")
+    @PutMapping("/")
     public User updateUser(@RequestBody UserToDo userToDo) {
         User user = new User(userToDo.getId(),
                 userToDo.getUsername(),
