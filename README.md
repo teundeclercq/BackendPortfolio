@@ -1,4 +1,4 @@
-# 🔯 S4 Backendportfolio 🔯
+# 💽 S4 Backendportfolio 💽
 
 This is a personal project I did for Semester 4 on Graduate school Fontys Tilburg.
 This is the first time we were required to add CI/CD to our projects. Before this semester we used Jenkins
