@@ -18,28 +18,29 @@ I configured the following:
 All the information i mostly found on DigitalOcean. They have wonderful tutorials for explaining what everything does when you enter commands.
 The server I was working on was linux based. I had some experience working with linux but not a lot at this moment, so I learned a lot of new commands from doing these tutorials.
 
-//Todo tell something about why it doesn't work at the moment.
-
 ### 🐋 Dockerfile & configuration
 
-//Link to the dockerfile.
-// Tell something about what people need to do to get it working on their machine.
+The code doesn't work at the moment because the codebase is connected to a database that doesn't exist anymore.
+That is why I created a dockerfile for a database. You can use this file and spin up a mysql server to connect to.
+The only thing you need to edit is the following properties inside application.properties:
+
+* spring.datasource.url
+* spring.datasource.username
+* spring.datasource.password
 
 ## 🚧 The project 🚧
 
-The project structure is a simple MVC (model, view, controller) setup. Although the view isn't here because I build a separate front-end for this with [Angular 8](http://www.projectlink.nl).
+The project structure is a simple MVC (model, view, controller) setup. Although the view isn't here because I build a separate front-end for this with [Angular 8](https://github.com/teundeclercq/PortfolioFrontend).
 The front-end was the most focus of this semester. We chose Angular because at first glance this was what most big companies used and because it had a lot of good documentation. 
 Also, angular forced you to use a specific structure when creating components, and I liked this kind of strict force, because then you're coding wouldn't get messy.
 This was my thought process at the time.
 
-### ⚙ API configuration 
-//todo tell something about the API configuration.
-
-### 🧷 CorsFilter
-//todo tell something about the CorsFilter
-
 ### 🍃 Spring boot 
-//todo tell something about Spring Boot and why we used it.
 
-## 🧪 Tests
-//todo tell something about tests.
+For this project I used the framework spring boot. 
+The reason I chose for spring boot because it was easy to configure and not that hard to understand.
+
+### 🧪 Tests
+
+For tests, I did Integration tests and Unit tests. The integration tests can be found in the [repository section](src/test/java/nl/teundeclercq/portofolio/repository).
+The rest of the tests are Unit tests.
