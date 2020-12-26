@@ -15,10 +15,10 @@ I configured the following:
  * [Sonarqube service for code analysis](https://www.digitalocean.com/community/tutorials/how-to-ensure-code-quality-with-sonarqube-on-ubuntu-18-04)
  * [Tomcat server for deploying](https://www.digitalocean.com/community/tutorials/install-tomcat-9-ubuntu-1804)
  
-All the information i mostly found on DigitalOcean. They have wonderful tutorials for explaining what everything does when you enter commands.
+All the information I mostly found on DigitalOcean. They have wonderful tutorials for explaining what everything does when you enter commands.
 The server I was working on was linux based. I had some experience working with linux but not a lot at this moment, so I learned a lot of new commands from doing these tutorials.
 
-### 🐋 Dockerfile & configuration
+### 🐋 Database configuration
 
 The code doesn't work at the moment because the codebase is connected to a database that doesn't exist anymore.
 That is why I created a dockerfile for a database. You can use this file and spin up a mysql server to connect to.
@@ -27,6 +27,11 @@ The only thing you need to edit is the following properties inside application.p
 * spring.datasource.url
 * spring.datasource.username
 * spring.datasource.password
+
+To run the configuration for the database you need to run the following command:
+```
+docker stack deploy -c postgres.yaml postgres
+```
 
 ## 🚧 The project 🚧
 
