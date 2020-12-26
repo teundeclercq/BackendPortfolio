@@ -30,7 +30,7 @@ The only thing you need to edit is the following properties inside application.p
 
 To run the configuration for the database you need to run the following command:
 ```
-docker stack deploy -c postgres.yaml postgres
+docker run --name portfoliodb -p 5432:5432 -e POSTGRES_PASSWORD=PostGresQL@123 -d postgres
 ```
 
 ## 🚧 The project 🚧
