@@ -6,7 +6,7 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_PASSWORD: PostGresQL@2
+      POSTGRES_PASSWORD: PostGresQL@123
       POSTGRES_USER: PortfolioUser
       POSTGRES_DB: PortfolioDB
 
